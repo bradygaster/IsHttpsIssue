@@ -23,7 +23,7 @@ namespace basicmvc.Controllers
             return new JsonResult(new {
                 IsHttps = Request.IsHttps,
                 InBoundIP = ControllerContext.HttpContext.Connection.RemoteIpAddress.ToString(),
-                Version = "0.0.10"
+                Version = "0.0.11"
             });
         }
     }
