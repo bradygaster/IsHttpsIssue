@@ -21,10 +21,6 @@ namespace IsHttpBug
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost
                 .CreateDefaultBuilder(args)
-                .ConfigureServices(services => 
-                {
-                    services.AddTransient<IStartupFilter, SetAppServiceKnownProxyMiddlewareFilter>();
-                })
                 .UseStartup<Startup>();
     }
 }

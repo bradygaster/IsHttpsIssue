@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IsHttpBug;
 using Microsoft.AspNetCore.Mvc;
 
 namespace basicmvc.Controllers
@@ -23,7 +24,7 @@ namespace basicmvc.Controllers
             return new JsonResult(new {
                 IsHttps = Request.IsHttps,
                 InBoundIP = ControllerContext.HttpContext.Connection.RemoteIpAddress.ToString(),
-                Version = "0.0.11"
+                Version = Startup.VERSION
             });
         }
     }

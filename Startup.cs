@@ -13,6 +13,8 @@ namespace IsHttpBug
 {
     public class Startup
     {
+        internal const string VERSION = "0.0.15";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -21,22 +23,10 @@ namespace IsHttpBug
             services.AddMvc();
         }
 
-        private void RawMethod(IApplicationBuilder app)
-        {
-            var options = new ForwardedHeadersOptions {
-                ForwardedHeaders = 
-                    ForwardedHeaders.XForwardedFor | 
-                    ForwardedHeaders.XForwardedProto    
-            };
-
-            options.KnownProxies.Add(IPAddress.Parse("::ffff:172.19.0.1"));
-            app.UseForwardedHeaders(options);
-        }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //RawMethod(app);
+            app.UseAzureAppServiceReverseProxy();
 
             if (env.IsDevelopment())
             {
